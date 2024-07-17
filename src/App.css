@@ -1,38 +1,227 @@
-.App {
+body{
+    
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  background-image: url('./images/leaves.png');
+  background-size: cover;
+  background-color: rgba(102, 128, 0, 0.249);
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+
+
+.container{
+  width: 500px;
+  margin: 2vh auto;
+  border: 3px solid rgba(75, 21, 78, 0.395);
+  background-color:rgba(144, 50, 188, 0.727);
+  border-radius: 50px;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+img{
+  width: 400px;
+  height: auto;
+  margin: 1px;
+  padding: 10px;
+}
+
+.timer{
   color: white;
+  font-size: 25px;
+  font-weight: bold;
+  position: absolute;
+  margin-top: 100px;
 }
 
-.App-link {
-  color: #61dafb;
+.pomodoraIcon{
+  display: flex;
+  justify-content: center;
+}
+.controles {
+  display: flex;
+  font-style: italic;
+  font-size: 30px;
+  border: solid 3px rgb(67, 3, 70);
+  border-radius: 10px;
+  background-color: #eee7ef56;
+  
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+button{
+  background-color: #eee7ef96;
+  border: none !important;
+}
+
+
+.sessionLength, .breakLength {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  
+}
+
+.time{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.arrow{
+  height: 45px;
+  width: 40px;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+}
+
+
+.title{
+  background-color: rgba(0, 0, 0, 0.573);
+  -webkit-text-stroke-color: transparent !important;
+  -webkit-text-stroke-width: 1px!important;
+  background-clip: text!important;
+}
+.title1{
+  font-size: 50px;
+  font-weight: bold;
+  color: rgb(6, 175, 6)
+}
+.title2{
+  font-size: 50px;
+  font-weight: bold;
+  color: rgb(255, 29, 29)
+}
+
+
+
+.pauseContainer {
+  width: 120px;
+  height: 120px;
+  position: relative;
+  border-radius: 50%;
+  transform: scale(0.5);
+  border: 5px solid rgba(150, 19, 167, 0.411);
+  background-color: #5d1a67a7;
+  margin-top: -50px;
+}
+
+.play-btn {
+  position: absolute;
+  appearance: none;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(#d7424217, #ff634722);
+  cursor: pointer;
+  outline: none;
+}
+
+.play-btn::before {
+  content: "";
+  position: absolute;
+  width: 93%;
+  height: 93%;
+  background-color:rgba(68, 0, 99, 0);
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.play-btn:checked {
+  animation: borderAnimate 700ms ease-in-out 1;
+  animation-fill-mode: forwards;
+}
+.play-btn{
+  margin-left: -60px;
+}
+@keyframes borderAnimate {
+  0% {
+    transform: rotate(0);
+    background: conic-gradient(#4a0654, transparent 20%);
   }
-  to {
+
+  80% {
+    background: conic-gradient(#5e166d, transparent 90%);
+  }
+
+  100% {
     transform: rotate(360deg);
+    background: conic-gradient(#450e4e6c, #320b3c57);
+  }
+}
+
+.play-icon {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  left: 60%;
+  top: 50%;
+  background-color: #fb1b1bbe;
+  transform: translate(-60%, -50%) rotate(90deg);
+  clip-path: polygon(50% 15%, 0% 100%, 100% 100%);
+  transition: all 400ms ease-in-out;
+  cursor: pointer;
+}
+
+.play-btn:checked + .play-icon {
+  clip-path: polygon(0 100%, 0% 100%, 100% 100%);
+}
+
+.pause-icon {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.pause-icon::before {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 100%;
+  background-color: #47ff69;
+  left: 0;
+}
+
+.pause-icon::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 100%;
+  background-color: #47ff69;
+  right: 0;
+}
+
+.play-btn:checked ~ .pause-icon::before {
+  animation: reveal 300ms ease-in-out 350ms 1;
+  animation-fill-mode: forwards;
+}
+
+.play-btn:checked ~ .pause-icon::after {
+  animation: reveal 300ms ease-in-out 600ms 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes reveal {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 35%;
+  }
+}
+
+@media (max-width: 600px) {
+  body{
+    transform: scale(0.7);
   }
 }
